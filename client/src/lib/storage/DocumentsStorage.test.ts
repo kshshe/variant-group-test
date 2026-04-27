@@ -1,6 +1,10 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { DocumentsStorage, type JobApplicationDocument, type StorageProvider } from './DocumentsStorage';
+import {
+  DocumentsStorage,
+  type JobApplicationDocument,
+  type StorageProvider,
+} from './DocumentsStorage';
 
 function createMemoryStorage(): StorageProvider {
   const map = new Map<string, string>();
@@ -14,11 +18,13 @@ function createMemoryStorage(): StorageProvider {
     },
     removeItem(key) {
       map.delete(key);
-    }
+    },
   };
 }
 
-function createDocument(overrides: Partial<JobApplicationDocument> = {}): JobApplicationDocument {
+function createDocument(
+  overrides: Partial<JobApplicationDocument> = {},
+): JobApplicationDocument {
   return {
     id: 'doc-1',
     jobTitle: 'Product manager',
@@ -27,7 +33,7 @@ function createDocument(overrides: Partial<JobApplicationDocument> = {}): JobApp
     additionalDetails: 'Ships polished UX',
     coverLetter: 'Dear Apple Team',
     createdAt: '2026-04-27T20:00:00.000Z',
-    ...overrides
+    ...overrides,
   };
 }
 
@@ -37,7 +43,7 @@ describe('DocumentsStorage', () => {
   });
 
   it('adds a document and returns it from getAll', () => {
-    const storage = new DocumentsStorage();
+    const storage = DocumentsStorage;
     const document = createDocument();
 
     storage.add(document);
@@ -46,7 +52,7 @@ describe('DocumentsStorage', () => {
   });
 
   it('deletes a document by id', () => {
-    const storage = new DocumentsStorage();
+    const storage = DocumentsStorage;
 
     storage.add(createDocument());
     storage.add(createDocument({ id: 'doc-2', company: 'Stripe' }));
@@ -54,7 +60,7 @@ describe('DocumentsStorage', () => {
     storage.delete('doc-1');
 
     expect(storage.getAll()).toEqual([
-      expect.objectContaining({ id: 'doc-2', company: 'Stripe' })
+      expect.objectContaining({ id: 'doc-2', company: 'Stripe' }),
     ]);
   });
 });

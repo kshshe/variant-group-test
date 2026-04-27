@@ -6,7 +6,7 @@ import { createOpenAICoverLetterService } from './services/generateCoverLetter.j
 const port = Number(process.env.PORT ?? 3001);
 const app = createApp({
   coverLetterService: createOpenAICoverLetterService(),
-  clientOrigin: process.env.CLIENT_ORIGIN ?? 'http://localhost:5173'
+  clientOrigin: process.env.CLIENT_ORIGIN ?? 'http://localhost:5173',
 });
 
 app.listen(port, () => {

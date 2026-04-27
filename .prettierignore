@@ -1,0 +1,8 @@
+node_modules/
+dist/
+coverage/
+.vite/
+*.tsbuildinfo
+*.d.ts
+client/vite.config.js
+client/vitest.config.js

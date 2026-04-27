@@ -1,10 +1,11 @@
 import type {
   ApiErrorResponse,
   GenerateCoverLetterRequest,
-  GenerateCoverLetterResponse
+  GenerateCoverLetterResponse,
 } from './types';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') ?? '';
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') ?? '';
 const RETRY_DELAYS_MS = [150, 300, 600];
 
 class RequestError extends Error {
@@ -43,17 +44,25 @@ async function parseErrorMessage(response: Response) {
   return `Request failed with status ${response.status}.`;
 }
 
-async function requestJson<TResponse>(path: string, init: RequestInit): Promise<TResponse> {
+async function requestJson<TResponse>(
+  path: string,
+  init: RequestInit,
+): Promise<TResponse> {
   let lastError: Error | null = null;
 
-  for (let attemptIndex = 0; attemptIndex <= RETRY_DELAYS_MS.length; attemptIndex += 1) {
+  for (
+    let attemptIndex = 0;
+    attemptIndex <= RETRY_DELAYS_MS.length;
+    attemptIndex += 1
+  ) {
     try {
       const response = await fetch(`${API_BASE_URL}${path}`, init);
 
       if (!response.ok) {
         throw new RequestError(
           await parseErrorMessage(response),
-          isRetriableStatus(response.status) && attemptIndex < RETRY_DELAYS_MS.length
+          isRetriableStatus(response.status) &&
+            attemptIndex < RETRY_DELAYS_MS.length,
         );
       }
 
@@ -63,7 +72,8 @@ async function requestJson<TResponse>(path: string, init: RequestInit): Promise<
         throw error;
       }
 
-      lastError = error instanceof Error ? error : new Error('Network request failed.');
+      lastError =
+        error instanceof Error ? error : new Error('Network request failed.');
 
       if (attemptIndex < RETRY_DELAYS_MS.length) {
         await wait(RETRY_DELAYS_MS[attemptIndex]);
@@ -76,13 +86,16 @@ async function requestJson<TResponse>(path: string, init: RequestInit): Promise<
 }
 
 export async function generateCoverLetter(payload: GenerateCoverLetterRequest) {
-  const response = await requestJson<GenerateCoverLetterResponse>('/api/generate', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
+  const response = await requestJson<GenerateCoverLetterResponse>(
+    '/api/generate',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
     },
-    body: JSON.stringify(payload)
-  });
+  );
 
   return response.data;
 }

@@ -18,8 +18,13 @@ function readFromStorage<TValue>(key: string, initialValue: TValue) {
   }
 }
 
-export function useLocalStorageState<TValue>(key: string, initialValue: TValue) {
-  const [value, setValue] = useState<TValue>(() => readFromStorage(key, initialValue));
+export function useLocalStorageState<TValue>(
+  key: string,
+  initialValue: TValue,
+) {
+  const [value, setValue] = useState<TValue>(() =>
+    readFromStorage(key, initialValue),
+  );
 
   useEffect(() => {
     if (typeof window === 'undefined') {

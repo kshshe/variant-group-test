@@ -26,7 +26,7 @@ function createMemoryStorage(): StorageProvider {
     },
     removeItem(key) {
       storage.delete(key);
-    }
+    },
   };
 }
 
@@ -39,18 +39,19 @@ function resolveDefaultStorageProvider(): StorageProvider {
 }
 
 export class DocumentsStorage {
-  static #storageProvider: StorageProvider = resolveDefaultStorageProvider();
+  private static storageProvider: StorageProvider =
+    resolveDefaultStorageProvider();
 
   static setStorageProvider(provider: StorageProvider) {
-    DocumentsStorage.#storageProvider = provider;
+    DocumentsStorage.storageProvider = provider;
   }
 
   static resetStorageProvider() {
-    DocumentsStorage.#storageProvider = resolveDefaultStorageProvider();
+    DocumentsStorage.storageProvider = resolveDefaultStorageProvider();
   }
 
-  getAll(): JobApplicationDocument[] {
-    const raw = DocumentsStorage.#storageProvider.getItem(STORAGE_KEY);
+  static getAll(): JobApplicationDocument[] {
+    const raw = DocumentsStorage.storageProvider.getItem(STORAGE_KEY);
 
     if (!raw) {
       return [];
@@ -59,23 +60,31 @@ export class DocumentsStorage {
     try {
       return JSON.parse(raw) as JobApplicationDocument[];
     } catch {
-      DocumentsStorage.#storageProvider.removeItem(STORAGE_KEY);
+      DocumentsStorage.storageProvider.removeItem(STORAGE_KEY);
       return [];
     }
   }
 
-  add(document: JobApplicationDocument) {
-    const nextDocuments = [document, ...this.getAll().filter((item) => item.id !== document.id)];
-    this.#save(nextDocuments);
+  static add(document: JobApplicationDocument) {
+    const nextDocuments = [
+      document,
+      ...this.getAll().filter((item) => item.id !== document.id),
+    ];
+    this.save(nextDocuments);
     return document;
   }
 
-  delete(documentId: string) {
-    const nextDocuments = this.getAll().filter((document) => document.id !== documentId);
-    this.#save(nextDocuments);
+  static delete(documentId: string) {
+    const nextDocuments = this.getAll().filter(
+      (document) => document.id !== documentId,
+    );
+    this.save(nextDocuments);
   }
 
-  #save(documents: JobApplicationDocument[]) {
-    DocumentsStorage.#storageProvider.setItem(STORAGE_KEY, JSON.stringify(documents));
+  private static save(documents: JobApplicationDocument[]) {
+    DocumentsStorage.storageProvider.setItem(
+      STORAGE_KEY,
+      JSON.stringify(documents),
+    );
   }
 }

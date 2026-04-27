@@ -13,8 +13,8 @@ export function ApplicationList({ documents, onDelete }: ApplicationListProps) {
       <section>
         <h2>No applications yet</h2>
         <p>
-          Generate your first cover letter to populate the dashboard. Drafts will be restored from
-          this browser automatically.
+          Generate your first cover letter to populate the dashboard. Drafts
+          will be restored from this browser automatically.
         </p>
       </section>
     );
@@ -23,7 +23,11 @@ export function ApplicationList({ documents, onDelete }: ApplicationListProps) {
   return (
     <section>
       {documents.map((document) => (
-        <ApplicationCard key={document.id} document={document} onDelete={onDelete} />
+        <ApplicationCard
+          key={document.id}
+          document={document}
+          onDelete={onDelete}
+        />
       ))}
     </section>
   );

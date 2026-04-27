@@ -1,26 +1,19 @@
-/**
- * @typedef {Object} GenerateRequest
- * @property {string} jobTitle
- * @property {string} company
- * @property {string} strengths
- * @property {string} additionalDetails
- */
+export interface GenerateRequest {
+  jobTitle: string;
+  company: string;
+  strengths: string;
+  additionalDetails: string;
+}
 
 export const COVER_LETTER_SYSTEM_INSTRUCTIONS = [
   'You are a senior recruiting assistant.',
   'Write concise, specific cover letters in plain text.',
   'Avoid markdown, bullet points, and placeholders.',
   'Keep the tone confident, professional, and human.',
-  'Use only information provided by the user and do not invent achievements.'
+  'Use only information provided by the user and do not invent achievements.',
 ].join(' ');
 
-/**
- * Builds the prompt for the OpenAI call.
- *
- * @param {GenerateRequest} payload
- * @returns {string}
- */
-export function buildCoverLetterPrompt(payload) {
+export function buildCoverLetterPrompt(payload: GenerateRequest): string {
   return [
     'Create a tailored cover letter for a job application.',
     '',
@@ -34,6 +27,6 @@ export function buildCoverLetterPrompt(payload) {
     '- Start with a greeting that references the company.',
     '- Highlight the candidate strengths naturally.',
     '- End with a short call to action.',
-    '- Return plain text only.'
+    '- Return plain text only.',
   ].join('\n');
 }

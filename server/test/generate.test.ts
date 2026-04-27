@@ -1,14 +1,17 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+
 import request from 'supertest';
 
 import { createApp } from '../src/app.js';
+import type { GenerateRequest } from '../src/prompts/coverLetterPrompt.js';
 
-const validPayload = {
+const validPayload: GenerateRequest = {
   jobTitle: 'Product manager',
   company: 'Apple',
   strengths: 'HTML, CSS and doing things in time',
-  additionalDetails: 'I build user-focused interfaces and ship polished experiences.'
+  additionalDetails:
+    'I build user-focused interfaces and ship polished experiences.',
 };
 
 test('POST /api/generate validates the request body', async () => {
@@ -16,8 +19,8 @@ test('POST /api/generate validates the request body', async () => {
     coverLetterService: {
       async generate() {
         return 'should not be called';
-      }
-    }
+      },
+    },
   });
 
   const response = await request(app)
@@ -29,22 +32,23 @@ test('POST /api/generate validates the request body', async () => {
 });
 
 test('POST /api/generate returns a generated cover letter', async () => {
-  let receivedPayload = null;
+  let receivedPayload: GenerateRequest | null = null;
 
   const app = createApp({
     coverLetterService: {
       async generate(payload) {
         receivedPayload = payload;
-        return `Dear Apple Team,\n\nThank you for considering my application.`;
-      }
-    }
+        return 'Dear Apple Team,\n\nThank you for considering my application.';
+      },
+    },
   });
 
-  const response = await request(app)
-    .post('/api/generate')
-    .send(validPayload);
+  const response = await request(app).post('/api/generate').send(validPayload);
 
   assert.equal(response.status, 200);
-  assert.equal(response.body.data.coverLetter.includes('Dear Apple Team'), true);
+  assert.equal(
+    response.body.data.coverLetter.includes('Dear Apple Team'),
+    true,
+  );
   assert.deepEqual(receivedPayload, validPayload);
 });

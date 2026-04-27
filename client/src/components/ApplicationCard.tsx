@@ -10,7 +10,7 @@ interface ApplicationCardProps {
 function formatCreatedAt(createdAt: string) {
   return new Intl.DateTimeFormat('en', {
     month: 'short',
-    day: 'numeric'
+    day: 'numeric',
   }).format(new Date(createdAt));
 }
 
@@ -23,7 +23,8 @@ export function ApplicationCard({ document, onDelete }: ApplicationCardProps) {
   return (
     <article>
       <p>
-        <strong>{document.jobTitle}</strong> — {document.company} — {formatCreatedAt(document.createdAt)}
+        <strong>{document.jobTitle}</strong> — {document.company} —{' '}
+        {formatCreatedAt(document.createdAt)}
       </p>
       <p>Dear {document.company} team,</p>
       <p>{document.coverLetter}</p>

@@ -6,7 +6,7 @@ const payload = {
   jobTitle: 'Product manager',
   company: 'Apple',
   strengths: 'HTML, CSS and doing things in time',
-  additionalDetails: 'Ships polished UX'
+  additionalDetails: 'Ships polished UX',
 };
 
 describe('generateCoverLetter', () => {
@@ -25,14 +25,15 @@ describe('generateCoverLetter', () => {
         new Response(
           JSON.stringify({
             data: {
-              coverLetter: 'Dear Apple Team, thank you for considering my application.'
-            }
+              coverLetter:
+                'Dear Apple Team, thank you for considering my application.',
+            },
           }),
           {
             status: 200,
-            headers: { 'Content-Type': 'application/json' }
-          }
-        )
+            headers: { 'Content-Type': 'application/json' },
+          },
+        ),
       );
 
     vi.stubGlobal('fetch', fetchMock);
