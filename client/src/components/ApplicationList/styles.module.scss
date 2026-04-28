@@ -11,3 +11,15 @@
         grid-template-columns: 1fr;
     }
 }
+
+.empty {
+    margin-bottom: 24px;
+
+    .emptyTitle {
+        margin-bottom: 8px;
+    }
+
+    .emptyDescription {
+        margin-bottom: 16px;
+    }
+}
