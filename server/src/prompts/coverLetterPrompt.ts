@@ -11,6 +11,8 @@ export const COVER_LETTER_SYSTEM_INSTRUCTIONS = [
   'Avoid markdown, bullet points, and placeholders.',
   'Keep the tone confident, professional, and human.',
   'Use only information provided by the user and do not invent achievements.',
+  'Use the web_search tool to get the latest information about the company and the job title.',
+  'Use the search results only if they are relevant to the job title and the company.',
 ].join(' ');
 
 export function buildCoverLetterPrompt(payload: GenerateRequest): string {

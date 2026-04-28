@@ -57,6 +57,10 @@ export function createOpenAICoverLetterService(
           {
             model,
             instructions: COVER_LETTER_SYSTEM_INSTRUCTIONS,
+            tools: [
+              // @ts-expect-error - web_search is not a valid tool type
+              { type: 'web_search' },
+            ],
             input: buildCoverLetterPrompt(payload),
             max_output_tokens: 1100,
             temperature: 0.8,
