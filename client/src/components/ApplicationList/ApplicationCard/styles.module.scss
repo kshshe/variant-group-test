@@ -2,17 +2,23 @@
     background: #F2F4F7;
     padding: 24px;
     border-radius: 12px;
+    display: flex;
+    flex-direction: column;
 
     .content {
-        height: 152px;
-        overflow: hidden;
-        position: relative;
         white-space: pre-wrap;
         margin-bottom: 16px;
+        flex-grow: 1;
 
         .textParagraph {
             margin-bottom: 18px;
         }
+    }
+
+    .content.limitedHeight {
+        height: 152px;
+        overflow: hidden;
+        position: relative;
 
         &::after {
             content: '';

@@ -1,0 +1,18 @@
+.container {
+    display: grid;
+    grid-template-columns: calc(50% - 16px) calc(50% - 16px);
+    gap: 32px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinningIcon {
+    animation: spin 1s linear infinite;
+}

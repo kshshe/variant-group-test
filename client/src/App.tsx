@@ -6,7 +6,7 @@ import {
   DocumentsStorage,
   type JobApplicationDocument,
 } from './lib/storage/DocumentsStorage';
-import { CreateApplicationPage } from './pages/CreateApplicationPage';
+import { CreateApplicationPage } from './pages/CreateApplicationPage/CreateApplicationPage';
 import { DashboardPage } from './pages/DashboardPage/DashboardPage';
 import { Page } from './components/Page/Page';
 

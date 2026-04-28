@@ -8,17 +8,23 @@ import { Container } from '../../base/container/Container';
 import { TextButton } from '../../base/text-button/TextButton';
 import { Icon } from '../../base/icon/Icon';
 import { toast } from 'react-toastify';
+import classNames from 'classnames';
 
 interface ApplicationCardProps {
   document: JobApplicationDocument;
-  onDelete: (documentId: string) => void;
+  onDelete?: (documentId: string) => void;
+  limitHeight?: boolean;
 }
 
 const useSplittedText = (text: string) => {
   return text.split('\n');
 };
 
-export function ApplicationCard({ document, onDelete }: ApplicationCardProps) {
+export function ApplicationCard({
+  document,
+  onDelete,
+  limitHeight,
+}: ApplicationCardProps) {
   async function handleCopy(event: MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
     await navigator.clipboard.writeText(document.coverLetter);
@@ -29,7 +35,11 @@ export function ApplicationCard({ document, onDelete }: ApplicationCardProps) {
 
   return (
     <article className={styles.card}>
-      <div className={styles.content}>
+      <div
+        className={classNames(styles.content, {
+          [styles.limitedHeight]: limitHeight,
+        })}
+      >
         {splittedText.map((line, index) => (
           <Text
             key={index}
@@ -43,10 +53,13 @@ export function ApplicationCard({ document, onDelete }: ApplicationCardProps) {
         ))}
       </div>
       <Container justify="between" align="center" direction="row" gap="16px">
-        <TextButton color="secondary" onClick={() => onDelete(document.id)}>
-          <Icon name="trash" />
-          Delete
-        </TextButton>
+        {onDelete && (
+          <TextButton color="secondary" onClick={() => onDelete(document.id)}>
+            <Icon name="trash" />
+            Delete
+          </TextButton>
+        )}
+        {!onDelete && <span />}
         <TextButton onClick={handleCopy}>
           Copy to clipboard
           <Icon name="copy" />

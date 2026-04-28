@@ -1,7 +1,7 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { CreateApplicationPage } from './pages/CreateApplicationPage';
+import { CreateApplicationPage } from './pages/CreateApplicationPage/CreateApplicationPage';
 import { DashboardPage } from './pages/DashboardPage/DashboardPage';
 import type { JobApplicationDocument } from './lib/storage/DocumentsStorage';
 

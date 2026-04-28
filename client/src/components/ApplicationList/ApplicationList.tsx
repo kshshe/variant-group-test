@@ -28,6 +28,7 @@ export function ApplicationList({ documents, onDelete }: ApplicationListProps) {
           key={document.id}
           document={document}
           onDelete={onDelete}
+          limitHeight
         />
       ))}
     </section>
