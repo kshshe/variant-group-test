@@ -27,11 +27,16 @@ export function AppHeader({ documentsCount }: AppHeaderProps) {
       className={styles.header}
     >
       <Logo />
-      <Container justify="between" align="center" direction="row" gap="16px">
-        <Text size="regular" color="secondary">
-          {progressCount}/5 applications generated
-        </Text>
-        <Progress style="dots" current={progressCount} total={5} gap={4} />
+      <Container justify="between" align="center" direction="row" gap="24px">
+        <Container align="center" direction="row" gap="16px">
+          <Text size="regular" color="secondary">
+            {progressCount}/5 applications generated
+          </Text>
+          {progressCount < 5 && (
+            <Progress style="dots" current={progressCount} total={5} gap={4} />
+          )}
+          {progressCount >= 5 && <Icon name="check" size="large" />}
+        </Container>
         <Button
           size="small"
           color="secondary"

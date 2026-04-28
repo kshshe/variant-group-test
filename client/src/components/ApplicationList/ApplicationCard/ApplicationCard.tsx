@@ -7,6 +7,7 @@ import { Text } from '../../base/text/Text';
 import { Container } from '../../base/container/Container';
 import { TextButton } from '../../base/text-button/TextButton';
 import { Icon } from '../../base/icon/Icon';
+import { toast } from 'react-toastify';
 
 interface ApplicationCardProps {
   document: JobApplicationDocument;
@@ -21,6 +22,7 @@ export function ApplicationCard({ document, onDelete }: ApplicationCardProps) {
   async function handleCopy(event: MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
     await navigator.clipboard.writeText(document.coverLetter);
+    toast.success('Cover letter copied to clipboard');
   }
 
   const splittedText = useSplittedText(document.coverLetter);

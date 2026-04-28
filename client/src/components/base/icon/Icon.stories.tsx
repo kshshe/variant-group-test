@@ -47,5 +47,6 @@ export const ColoredIcons: Story = () => (
     <Icon name="plus" />
     <Icon name="repeat" size="large" />
     <Icon name="trash" />
+    <Icon name="check" />
   </div>
 );

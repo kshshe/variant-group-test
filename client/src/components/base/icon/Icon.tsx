@@ -7,6 +7,7 @@ import LoaderIcon from './icons/loader.svg?react';
 import PlusIcon from './icons/plus.svg?react';
 import RepeatIcon from './icons/repeat.svg?react';
 import TrashIcon from './icons/trash.svg?react';
+import CheckIcon from './icons/check.svg?react';
 import styles from './styles.module.scss';
 
 const ICONS = {
@@ -16,6 +17,7 @@ const ICONS = {
   plus: PlusIcon,
   repeat: RepeatIcon,
   trash: TrashIcon,
+  check: CheckIcon,
 } as const;
 
 export type TIconName = keyof typeof ICONS;
