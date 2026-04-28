@@ -7,6 +7,8 @@ import { Button } from '../base/button/Button';
 import { Icon } from '../base/icon/Icon';
 import { Progress } from '../Progress/Progress';
 
+import styles from './styles.module.scss';
+
 interface AppHeaderProps {
   documentsCount: number;
 }
@@ -22,6 +24,7 @@ export function AppHeader({ documentsCount }: AppHeaderProps) {
       align="center"
       direction="row"
       gap="12px"
+      className={styles.header}
     >
       <Logo />
       <Container justify="between" align="center" direction="row" gap="16px">

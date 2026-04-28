@@ -1,6 +1,7 @@
-import type { JobApplicationDocument } from '../lib/storage/DocumentsStorage';
+import type { JobApplicationDocument } from '../../lib/storage/DocumentsStorage';
 
-import { ApplicationCard } from './ApplicationCard';
+import { ApplicationCard } from './ApplicationCard/ApplicationCard';
+import styles from './styles.module.scss';
 
 interface ApplicationListProps {
   documents: JobApplicationDocument[];
@@ -21,7 +22,7 @@ export function ApplicationList({ documents, onDelete }: ApplicationListProps) {
   }
 
   return (
-    <section>
+    <section className={styles.grid}>
       {documents.map((document) => (
         <ApplicationCard
           key={document.id}

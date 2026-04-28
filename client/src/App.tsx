@@ -7,7 +7,7 @@ import {
   type JobApplicationDocument,
 } from './lib/storage/DocumentsStorage';
 import { CreateApplicationPage } from './pages/CreateApplicationPage';
-import { DashboardPage } from './pages/DashboardPage';
+import { DashboardPage } from './pages/DashboardPage/DashboardPage';
 import { Page } from './components/Page/Page';
 
 import './components/base/global.scss';
