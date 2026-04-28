@@ -39,13 +39,14 @@
 
   --base-text-color: #101828;
   --secondary-text-color: #667085;
+  --tertiary-text-color: #475467;
 
   --input-placeholder-color: var(--secondary-text-color);
   --input-border-color: #D0D5DD;
   --input-focus-border-color: #73E2A3;
   --input-text-color: var(--base-text-color);
   --input-label-color: var(--secondary-contrast-color);
-  --input-bottom-label-color: #475467;
+  --input-bottom-label-color: var(--tertiary-text-color);
 
   --error-color: #F04438;
   --error-border-color: #FDA29B;

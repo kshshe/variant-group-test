@@ -1,0 +1,29 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px;
+  border: none;
+  background: none;
+  color: var(--tertiary-text-color);
+  cursor: pointer;
+  font-family:
+    'Fixel Text',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+
+  &:hover:not(:disabled) {
+    filter: brightness(0.88);
+  }
+
+  &:active:not(:disabled) {
+    filter: brightness(0.76);
+  }
+}
