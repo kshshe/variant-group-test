@@ -1,7 +1,13 @@
+@use '../../styles/breakpoints' as breakpoints;
+
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     row-gap: 24px;
     column-gap: 16px;
     margin-bottom: 48px;
+
+    @include breakpoints.page-min-down {
+        grid-template-columns: 1fr;
+    }
 }

@@ -21,7 +21,15 @@ export function DashboardPage({ documents, onDelete }: DashboardPageProps) {
     <main>
       <AppHeader documentsCount={documents.length} />
 
-      <Container justify="between" align="center" direction="row" gap="16px">
+      <Container
+        justify="between"
+        align="center"
+        direction="row"
+        gap="16px"
+        mDirection="column"
+        mAlign="start"
+        mJustify="start"
+      >
         <Text size="xlarge" color="primary" as="h1">
           Applications
         </Text>

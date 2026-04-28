@@ -23,14 +23,29 @@ export function AppHeader({ documentsCount }: AppHeaderProps) {
       justify="between"
       align="center"
       direction="row"
+      mDirection="column"
+      mAlign="start"
       gap="12px"
       className={styles.header}
     >
       <Logo />
-      <Container justify="between" align="center" direction="row" gap="24px">
-        <Container align="center" direction="row" gap="16px">
+      <Container
+        justify="between"
+        align="center"
+        direction="row"
+        gap="24px"
+        mJustify="between"
+        className={styles.progressContainer}
+      >
+        <Container
+          align="center"
+          direction="row"
+          gap="16px"
+          mDirection="row-reverse"
+        >
           <Text size="regular" color="secondary">
-            {progressCount}/5 applications generated
+            {progressCount}/5 applications{' '}
+            <span className={styles.generatedText}>generated</span>
           </Text>
           {progressCount < 5 && (
             <Progress style="dots" current={progressCount} total={5} gap={4} />

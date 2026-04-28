@@ -1,3 +1,17 @@
+@use '../../styles/breakpoints' as breakpoints;
+
 .header {
     margin-bottom: 32px;
+}
+
+.generatedText {
+    @include breakpoints.page-min-down {
+        display: none;
+    }
+}
+
+.progressContainer {
+    @include breakpoints.page-min-down {
+        width: 100%;
+    }
 }

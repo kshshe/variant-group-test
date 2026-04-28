@@ -1,9 +1,15 @@
+@use '../../../styles/breakpoints' as breakpoints;
+
 .container {
   display: flex;
 }
 
 .row {
   flex-direction: row;
+}
+
+.row-reverse {
+  flex-direction: row-reverse;
 }
 
 .column {
@@ -36,4 +42,46 @@
 
 .justify-between {
   justify-content: space-between;
+}
+
+@include breakpoints.page-min-down {
+  .m-direction-row {
+    flex-direction: row;
+  }
+
+  .m-direction-row-reverse {
+    flex-direction: row-reverse;
+  }
+
+  .m-direction-column {
+    flex-direction: column;
+  }
+
+  .m-align-start {
+    align-items: flex-start;
+  }
+
+  .m-align-center {
+    align-items: center;
+  }
+
+  .m-align-end {
+    align-items: flex-end;
+  }
+
+  .m-justify-start {
+    justify-content: flex-start;
+  }
+
+  .m-justify-center {
+    justify-content: center;
+  }
+
+  .m-justify-end {
+    justify-content: flex-end;
+  }
+
+  .m-justify-between {
+    justify-content: space-between;
+  }
 }

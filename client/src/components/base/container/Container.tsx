@@ -5,7 +5,7 @@ import styles from './styles.module.scss';
 
 type TContainerAlign = 'center' | 'end' | 'start';
 type TContainerJustify = 'between' | 'center' | 'end' | 'start';
-type TContainerDirection = 'column' | 'row';
+type TContainerDirection = 'column' | 'row' | 'row-reverse';
 
 type TContainerProps = React.PropsWithChildren<
   Omit<React.ComponentPropsWithoutRef<'div'>, 'children'> & {
@@ -13,6 +13,9 @@ type TContainerProps = React.PropsWithChildren<
     justify?: TContainerJustify;
     className?: string;
     direction?: TContainerDirection;
+    mAlign?: TContainerAlign;
+    mJustify?: TContainerJustify;
+    mDirection?: TContainerDirection;
     gap?: number | string;
     as?: React.ElementType;
   }
@@ -25,6 +28,9 @@ export const Container = ({
   className,
   justify = 'start',
   direction = 'row',
+  mAlign,
+  mJustify,
+  mDirection,
   gap,
   style,
   ...props
@@ -39,6 +45,9 @@ export const Container = ({
         styles[`align-${align}`],
         styles[`justify-${justify}`],
         styles[direction],
+        mAlign && styles[`m-align-${mAlign}`],
+        mJustify && styles[`m-justify-${mJustify}`],
+        mDirection && styles[`m-direction-${mDirection}`],
       )}
       style={{
         ...style,

@@ -1,7 +1,14 @@
+@use '../../styles/breakpoints' as breakpoints;
+
 .container {
     display: grid;
     grid-template-columns: calc(50% - 16px) calc(50% - 16px);
     gap: 32px;
+
+    @include breakpoints.page-min-down {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
 }
 
 @keyframes spin {

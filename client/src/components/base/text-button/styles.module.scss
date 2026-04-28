@@ -19,6 +19,8 @@
   line-height: 24px;
   letter-spacing: 0;
 
+  white-space: nowrap;
+
   &:hover:not(:disabled) {
     filter: brightness(0.88);
   }

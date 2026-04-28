@@ -1,6 +1,6 @@
 import type { JobApplicationDocument } from '../../lib/storage/DocumentsStorage';
 
-import { ApplicationCard } from './ApplicationCard/ApplicationCard';
+import { ApplicationCard } from '../ApplicationCard/ApplicationCard';
 import styles from './styles.module.scss';
 
 interface ApplicationListProps {

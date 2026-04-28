@@ -16,7 +16,7 @@ import { Container } from '../../components/base/container/Container';
 import { Field } from '../../components/base/field/Field';
 import { Button } from '../../components/base/button/Button';
 import { Icon } from '../../components/base/icon/Icon';
-import { ApplicationCard } from '../../components/ApplicationList/ApplicationCard/ApplicationCard';
+import { ApplicationCard } from '../../components/ApplicationCard/ApplicationCard';
 
 interface CreateApplicationPageProps {
   documentsCount: number;

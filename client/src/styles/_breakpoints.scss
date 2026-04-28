@@ -1,0 +1,14 @@
+$page-content-breakpoint: 1200px;
+$page-min-breakpoint: 800px;
+
+@mixin page-content-down {
+  @media (max-width: $page-content-breakpoint) {
+    @content;
+  }
+}
+
+@mixin page-min-down {
+  @media (max-width: $page-min-breakpoint) {
+    @content;
+  }
+}

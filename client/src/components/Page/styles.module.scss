@@ -1,16 +1,18 @@
+@use '../../styles/breakpoints' as breakpoints;
+
 .page {
   width: 1120px;
   margin: 0 auto;
   padding: 32px 0;
 }
 
-@media (max-width: 1200px) {
+@include breakpoints.page-content-down {
   .page {
     width: 700px;
   }
 }
 
-@media (max-width: 800px) {
+@include breakpoints.page-min-down {
   .page {
     width: calc(100vw - 40px);
     padding: 20px 0;

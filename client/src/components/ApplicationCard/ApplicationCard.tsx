@@ -1,12 +1,12 @@
 import type { MouseEvent } from 'react';
 
-import type { JobApplicationDocument } from '../../../lib/storage/DocumentsStorage';
+import type { JobApplicationDocument } from '../../lib/storage/DocumentsStorage';
 
 import styles from './styles.module.scss';
-import { Text } from '../../base/text/Text';
-import { Container } from '../../base/container/Container';
-import { TextButton } from '../../base/text-button/TextButton';
-import { Icon } from '../../base/icon/Icon';
+import { Text } from '../base/text/Text';
+import { Container } from '../base/container/Container';
+import { TextButton } from '../base/text-button/TextButton';
+import { Icon } from '../base/icon/Icon';
 import { toast } from 'react-toastify';
 import classNames from 'classnames';
 
