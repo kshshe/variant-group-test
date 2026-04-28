@@ -13,18 +13,11 @@ import helmet from 'helmet';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
-import type { GenerateRequest } from './prompts/coverLetterPrompt.js';
+import { validateGenerateCoverLetterRequest } from './shared/coverLetterValidation.js';
 import {
   createOpenAICoverLetterService,
   type CoverLetterService,
 } from './services/generateCoverLetter.js';
-
-const MAX_FIELD_LENGTHS = {
-  jobTitle: 120,
-  company: 120,
-  strengths: 300,
-  additionalDetails: 1200,
-} as const;
 
 interface CreateAppOptions {
   coverLetterService?: CoverLetterService | null;
@@ -38,10 +31,6 @@ type ErrorResponse = {
     details?: string[];
   };
 };
-
-type ValidationResult =
-  | { ok: true; value: GenerateRequest }
-  | { ok: false; details: string[] };
 
 function buildSwaggerSpec() {
   return swaggerJsdoc({
@@ -74,73 +63,6 @@ function createErrorResponse(
       code,
       message,
       ...(details.length > 0 ? { details } : {}),
-    },
-  };
-}
-
-function normalizeText(value: unknown): string {
-  return typeof value === 'string' ? value.trim() : '';
-}
-
-function validateGenerateRequest(body: unknown): ValidationResult {
-  if (!body || typeof body !== 'object' || Array.isArray(body)) {
-    return { ok: false, details: ['Request body must be a JSON object.'] };
-  }
-
-  const candidate = body as Record<string, unknown>;
-  const jobTitle = normalizeText(candidate.jobTitle);
-  const company = normalizeText(candidate.company);
-  const strengths = normalizeText(candidate.strengths);
-  const additionalDetails = normalizeText(candidate.additionalDetails);
-  const details: string[] = [];
-
-  if (!jobTitle) {
-    details.push('jobTitle is required.');
-  }
-
-  if (!company) {
-    details.push('company is required.');
-  }
-
-  if (!strengths) {
-    details.push('strengths is required.');
-  }
-
-  if (jobTitle.length > MAX_FIELD_LENGTHS.jobTitle) {
-    details.push(
-      `jobTitle must be at most ${MAX_FIELD_LENGTHS.jobTitle} characters.`,
-    );
-  }
-
-  if (company.length > MAX_FIELD_LENGTHS.company) {
-    details.push(
-      `company must be at most ${MAX_FIELD_LENGTHS.company} characters.`,
-    );
-  }
-
-  if (strengths.length > MAX_FIELD_LENGTHS.strengths) {
-    details.push(
-      `strengths must be at most ${MAX_FIELD_LENGTHS.strengths} characters.`,
-    );
-  }
-
-  if (additionalDetails.length > MAX_FIELD_LENGTHS.additionalDetails) {
-    details.push(
-      `additionalDetails must be at most ${MAX_FIELD_LENGTHS.additionalDetails} characters.`,
-    );
-  }
-
-  if (details.length > 0) {
-    return { ok: false, details };
-  }
-
-  return {
-    ok: true,
-    value: {
-      jobTitle,
-      company,
-      strengths,
-      additionalDetails,
     },
   };
 }
@@ -298,16 +220,16 @@ export function createApp(options: CreateAppOptions = {}): Express {
     generateLimiter,
     generateSlowdown,
     async (request, response) => {
-      const validation = validateGenerateRequest(request.body);
+      const validation = validateGenerateCoverLetterRequest(request.body);
 
-      if (!validation.ok) {
+      if (!validation.valid) {
         return response
           .status(400)
           .json(
             createErrorResponse(
               'VALIDATION_ERROR',
               'Request body is invalid.',
-              validation.details,
+              validation.errors,
             ),
           );
       }

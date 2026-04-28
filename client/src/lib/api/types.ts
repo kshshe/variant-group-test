@@ -1,9 +1,4 @@
-export interface GenerateCoverLetterRequest {
-  jobTitle: string;
-  company: string;
-  strengths: string;
-  additionalDetails: string;
-}
+export type { GenerateCoverLetterRequest } from '../validation/generateCoverLetterValidation';
 
 export interface GenerateCoverLetterResponse {
   data: {

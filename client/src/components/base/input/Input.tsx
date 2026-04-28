@@ -34,6 +34,7 @@ export const Input = (props: TInputProps) => {
   if (props.type === 'textarea') {
     const {
       className: _className,
+      error: _error,
       onChange: _onChange,
       type: _type,
       value: _value,
@@ -55,6 +56,7 @@ export const Input = (props: TInputProps) => {
 
   const {
     className: _className,
+    error: _error,
     onChange: _onChange,
     type: _type,
     value: _value,

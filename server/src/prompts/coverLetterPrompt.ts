@@ -1,9 +1,6 @@
-export interface GenerateRequest {
-  jobTitle: string;
-  company: string;
-  strengths: string;
-  additionalDetails: string;
-}
+import type { GenerateCoverLetterRequest } from '../shared/coverLetterValidation.js';
+
+export type GenerateRequest = GenerateCoverLetterRequest;
 
 export const COVER_LETTER_SYSTEM_INSTRUCTIONS = [
   'You are a senior recruiting assistant.',

@@ -44,15 +44,19 @@ describe('raw HTML structure', () => {
       configurable: true,
     });
   });
-  it('renders dashboard without custom class-based styling hooks', () => {
+  it('renders dashboard with the expected content', () => {
     const markup = renderToStaticMarkup(
       <DashboardPage documents={documents} onDelete={() => undefined} />,
     );
 
-    expect(markup).not.toContain('class=');
+    expect(markup).toContain('Applications');
+    expect(markup).toContain('Create New');
+    expect(markup).toContain(
+      'Dear Stripe team, I would love to help build polished interfaces.',
+    );
   });
 
-  it('renders create page without custom class-based styling hooks', () => {
+  it('renders create page with the expected content', () => {
     const markup = renderToStaticMarkup(
       <CreateApplicationPage
         documentsCount={documents.length}
@@ -60,6 +64,10 @@ describe('raw HTML structure', () => {
       />,
     );
 
-    expect(markup).not.toContain('class=');
+    expect(markup).toContain('New application');
+    expect(markup).toContain('Generate Now');
+    expect(markup).toContain(
+      'Your generated cover letter will appear here after a successful request.',
+    );
   });
 });

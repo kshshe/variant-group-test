@@ -17,47 +17,72 @@ import { Field } from '../../components/base/field/Field';
 import { Button } from '../../components/base/button/Button';
 import { Icon } from '../../components/base/icon/Icon';
 import { ApplicationCard } from '../../components/ApplicationCard/ApplicationCard';
+import {
+  COVER_LETTER_FIELD_MAX_LENGTHS,
+  coverLetterFieldRules,
+  normalizeGenerateCoverLetterRequest,
+} from '../../lib/validation/generateCoverLetterValidation';
+import { useFormField } from '../../hooks/useFormField';
 
 interface CreateApplicationPageProps {
   documentsCount: number;
   onDocumentCreated: () => void;
 }
 
-const initialFormState: GenerateCoverLetterRequest = {
-  jobTitle: '',
-  company: '',
-  strengths: '',
-  additionalDetails: '',
-};
+const validateOnChange = true;
 
 export function CreateApplicationPage({
   documentsCount,
   onDocumentCreated,
 }: CreateApplicationPageProps) {
-  const [formState, setFormState] =
-    useState<GenerateCoverLetterRequest>(initialFormState);
+  const jobTitleField = useFormField({
+    rules: coverLetterFieldRules.jobTitle.client,
+    validateOnChange,
+  });
+  const companyField = useFormField({
+    rules: coverLetterFieldRules.company.client,
+    validateOnChange,
+  });
+  const strengthsField = useFormField({
+    rules: coverLetterFieldRules.strengths.client,
+    validateOnChange,
+  });
+  const additionalDetailsField = useFormField({
+    rules: coverLetterFieldRules.additionalDetails.client,
+    validateOnChange,
+  });
   const [loading, setLoading] = useState(false);
   const [generatedDocument, setGeneratedDocument] =
     useState<JobApplicationDocument | null>(null);
 
-  function updateField<Key extends keyof GenerateCoverLetterRequest>(
-    key: Key,
-    value: GenerateCoverLetterRequest[Key],
-  ) {
-    setFormState((currentState) => ({
-      ...currentState,
-      [key]: value,
-    }));
-  }
+  const formState: GenerateCoverLetterRequest = {
+    jobTitle: jobTitleField.value,
+    company: companyField.value,
+    strengths: strengthsField.value,
+    additionalDetails: additionalDetailsField.value,
+  };
 
   async function handleSubmit() {
+    const validationResults = [
+      jobTitleField.validate(),
+      companyField.validate(),
+      strengthsField.validate(),
+      additionalDetailsField.validate(),
+    ];
+
+    if (validationResults.some((isValid) => !isValid)) {
+      return;
+    }
+
+    const normalizedFormState = normalizeGenerateCoverLetterRequest(formState);
+
     setLoading(true);
 
     try {
-      const { coverLetter } = await generateCoverLetter(formState);
+      const { coverLetter } = await generateCoverLetter(normalizedFormState);
       const document: JobApplicationDocument = {
         id: crypto.randomUUID(),
-        ...formState,
+        ...normalizedFormState,
         coverLetter,
         createdAt: new Date().toISOString(),
       };
@@ -76,9 +101,11 @@ export function CreateApplicationPage({
     }
   }
 
-  const hasCustomTitle = [formState.jobTitle, formState.company].every(Boolean);
+  const trimmedJobTitle = jobTitleField.value.trim();
+  const trimmedCompany = companyField.value.trim();
+  const hasCustomTitle = [trimmedJobTitle, trimmedCompany].every(Boolean);
   const title = hasCustomTitle
-    ? [formState.jobTitle, formState.company].join(', ')
+    ? [trimmedJobTitle, trimmedCompany].join(', ')
     : 'New application';
 
   const previewText =
@@ -95,41 +122,60 @@ export function CreateApplicationPage({
             size="large"
             color={hasCustomTitle ? 'primary' : 'secondary'}
             as="h1"
+            className={styles.title}
           >
             {title}
           </Text>
           <TitleGap size="small" />
-          <Container align="center" direction="row" gap="16px">
+          <Container align="start" direction="row" gap="16px">
             <Field
               label="Job title"
-              value={formState.jobTitle}
-              onChange={(value) => updateField('jobTitle', value)}
-              maxLength={120}
+              bottomLabel={
+                jobTitleField.isTouched
+                  ? (jobTitleField.error ?? undefined)
+                  : undefined
+              }
+              error={jobTitleField.isTouched && Boolean(jobTitleField.error)}
+              maxLength={COVER_LETTER_FIELD_MAX_LENGTHS.jobTitle}
               placeholder="Product manager"
+              {...jobTitleField.inputProps}
             />
             <Field
               label="Company"
-              value={formState.company}
-              onChange={(value) => updateField('company', value)}
-              maxLength={120}
+              bottomLabel={
+                companyField.isTouched
+                  ? (companyField.error ?? undefined)
+                  : undefined
+              }
+              error={companyField.isTouched && Boolean(companyField.error)}
+              maxLength={COVER_LETTER_FIELD_MAX_LENGTHS.company}
               placeholder="Apple"
+              {...companyField.inputProps}
             />
           </Container>
           <Field
             label="I am good at..."
-            value={formState.strengths}
-            onChange={(value) => updateField('strengths', value)}
-            maxLength={300}
+            bottomLabel={
+              strengthsField.isTouched
+                ? (strengthsField.error ?? undefined)
+                : undefined
+            }
+            error={strengthsField.isTouched && Boolean(strengthsField.error)}
+            maxLength={COVER_LETTER_FIELD_MAX_LENGTHS.strengths}
             placeholder="HTML, CSS and doing things in time"
+            {...strengthsField.inputProps}
           />
           <Field
             label="Additional details"
-            value={formState.additionalDetails}
-            onChange={(value) => updateField('additionalDetails', value)}
-            maxLength={1200}
+            bottomLabel={`${additionalDetailsField.value.length}/${COVER_LETTER_FIELD_MAX_LENGTHS.additionalDetails}`}
+            error={
+              additionalDetailsField.isTouched &&
+              Boolean(additionalDetailsField.error)
+            }
             placeholder="I build user-focused interfaces, communicate clearly with designers and engineers, and enjoy turning ambiguous ideas into polished product experiences."
             rows={8}
             type="textarea"
+            {...additionalDetailsField.inputProps}
           />
           <Button
             size="large"
