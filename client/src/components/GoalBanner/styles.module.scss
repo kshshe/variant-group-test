@@ -1,10 +1,12 @@
+@use '../../styles/breakpoints' as breakpoints;
+
 .banner {
     background-color: #EDFCF2;
-    padding: 54px;
-    margin-bottom: 88px;
+    padding: breakpoints.scale(54px);
+    margin-bottom: breakpoints.scale(88px);
 
     .content {
-        max-width: 480px;
+        max-width: breakpoints.scale(480px);
         text-align: center;
     }
 }

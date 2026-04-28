@@ -3,9 +3,9 @@
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    row-gap: 24px;
-    column-gap: 16px;
-    margin-bottom: 48px;
+    row-gap: breakpoints.scale(24px);
+    column-gap: breakpoints.scale(16px);
+    margin-bottom: breakpoints.scale(48px);
 
     @include breakpoints.page-min-down {
         grid-template-columns: 1fr;
@@ -13,13 +13,13 @@
 }
 
 .empty {
-    margin-bottom: 24px;
+    margin-bottom: breakpoints.scale(24px);
 
     .emptyTitle {
-        margin-bottom: 8px;
+        margin-bottom: breakpoints.scale(8px);
     }
 
     .emptyDescription {
-        margin-bottom: 16px;
+        margin-bottom: breakpoints.scale(16px);
     }
 }

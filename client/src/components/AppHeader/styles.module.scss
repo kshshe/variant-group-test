@@ -1,7 +1,7 @@
 @use '../../styles/breakpoints' as breakpoints;
 
 .header {
-    margin-bottom: 32px;
+    margin-bottom: breakpoints.scale(32px);
 }
 
 .generatedText {

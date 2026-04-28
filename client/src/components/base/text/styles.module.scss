@@ -1,3 +1,5 @@
+@use '../../../styles/breakpoints' as breakpoints;
+
 .text {
   margin: 0;
 }
@@ -19,8 +21,8 @@
     'Segoe UI',
     sans-serif;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 28px;
+  font-size: breakpoints.scale(18px);
+  line-height: breakpoints.scale(28px);
   letter-spacing: 0;
 }
 
@@ -34,8 +36,8 @@
     'Segoe UI',
     sans-serif;
   font-weight: 600;
-  font-size: 36px;
-  line-height: 44px;
+  font-size: breakpoints.scale(36px);
+  line-height: breakpoints.scale(44px);
   letter-spacing: -0.02em;
 }
 
@@ -49,7 +51,7 @@
     'Segoe UI',
     sans-serif;
   font-weight: 600;
-  font-size: 48px;
-  line-height: 60px;
+  font-size: breakpoints.scale(48px);
+  line-height: breakpoints.scale(60px);
   letter-spacing: -0.02em;
 }

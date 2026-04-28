@@ -1,8 +1,10 @@
+@use '../../../styles/breakpoints' as breakpoints;
+
 .button {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 2px;
+  gap: breakpoints.scale(8px);
+  padding: breakpoints.scale(2px);
   border: none;
   background: none;
   color: var(--tertiary-text-color);
@@ -15,8 +17,8 @@
     'Segoe UI',
     sans-serif;
   font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: breakpoints.scale(16px);
+  line-height: breakpoints.scale(24px);
   letter-spacing: 0;
 
   white-space: nowrap;

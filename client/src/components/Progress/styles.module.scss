@@ -1,7 +1,9 @@
+@use '../../styles/breakpoints' as breakpoints;
+
 .baseItem {
     background-color: var(--base-text-color);
-    height: 8px;
-    border-radius: 4px;
+    height: breakpoints.scale(8px);
+    border-radius: breakpoints.scale(4px);
 
     opacity: 0.24;
     &.completed {
@@ -9,10 +11,10 @@
     }
 
     &.dot {
-        width: 8px;
+        width: breakpoints.scale(8px);
     }
 
     &.pill {
-        width: 32px;
+        width: breakpoints.scale(32px);
     }
 }

@@ -1,21 +1,23 @@
+@use '../../../styles/breakpoints' as breakpoints;
+
 .field {
-  margin-bottom: 16px;
+  margin-bottom: breakpoints.scale(16px);
   width: 100%;
 }
 
 .label {
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: breakpoints.scale(6px);
   color: var(--input-label-color);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: breakpoints.scale(14px);
+  line-height: breakpoints.scale(20px);
 }
 
 .bottomLabel {
-  margin-top: 6px;
+  margin-top: breakpoints.scale(6px);
   color: var(--input-bottom-label-color);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: breakpoints.scale(14px);
+  line-height: breakpoints.scale(20px);
 }
 
 .error {

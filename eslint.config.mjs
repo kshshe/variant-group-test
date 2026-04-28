@@ -26,6 +26,7 @@ export default tseslint.config(
       sourceType: 'module',
     },
     rules: {
+      'react-refresh/only-export-components': 'off',
       '@typescript-eslint/no-unused-vars': [
         'error',
         {

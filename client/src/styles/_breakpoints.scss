@@ -1,6 +1,10 @@
 $page-content-breakpoint: 1200px;
 $page-min-breakpoint: 800px;
 
+@function scale($value) {
+  @return calc(#{$value} * var(--responsive-scale));
+}
+
 @mixin page-content-down {
   @media (max-width: $page-content-breakpoint) {
     @content;

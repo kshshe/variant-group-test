@@ -1,20 +1,19 @@
 @use '../../styles/breakpoints' as breakpoints;
 
 .page {
-  width: 1120px;
+  width: min(1120px, calc(100vw - #{breakpoints.scale(40px)}));
   margin: 0 auto;
-  padding: 32px 0;
+  padding: breakpoints.scale(32px) 0;
 }
 
 @include breakpoints.page-content-down {
   .page {
-    width: 700px;
+    width: min(700px, calc(100vw - #{breakpoints.scale(40px)}));
   }
 }
 
 @include breakpoints.page-min-down {
   .page {
-    width: calc(100vw - 40px);
-    padding: 20px 0;
+    width: calc(100vw - #{breakpoints.scale(40px)});
   }
 }

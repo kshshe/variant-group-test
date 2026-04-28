@@ -1,10 +1,12 @@
+@use '../../styles/breakpoints' as breakpoints;
+
 .titleGap {
-  height: 16px;
+  height: breakpoints.scale(16px);
   border-bottom: 1px solid var(--secondary-border-color);
-  margin-bottom: 24px;
+  margin-bottom: breakpoints.scale(24px);
 
   &.small {
-    height: 12px;
-    margin-bottom: 16px;
+    height: breakpoints.scale(12px);
+    margin-bottom: breakpoints.scale(16px);
   }
 }

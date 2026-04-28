@@ -21,6 +21,22 @@ type TContainerProps = React.PropsWithChildren<
   }
 >;
 
+function resolveResponsiveGap(gap?: number | string) {
+  if (typeof gap === 'number') {
+    return `calc(${gap}px * var(--responsive-scale))`;
+  }
+
+  if (typeof gap === 'string') {
+    const normalizedGap = gap.trim();
+
+    if (/^-?\d*\.?\d+px$/.test(normalizedGap)) {
+      return `calc(${normalizedGap} * var(--responsive-scale))`;
+    }
+  }
+
+  return gap;
+}
+
 export const Container = ({
   align = 'start',
   as = 'div',
@@ -36,6 +52,7 @@ export const Container = ({
   ...props
 }: TContainerProps) => {
   const Component = as as React.ElementType;
+  const responsiveGap = resolveResponsiveGap(gap);
 
   return (
     <Component
@@ -51,7 +68,7 @@ export const Container = ({
       )}
       style={{
         ...style,
-        gap,
+        gap: responsiveGap,
       }}
       {...props}
     >

@@ -1,3 +1,5 @@
+@use '../../../styles/breakpoints' as breakpoints;
+
 .button {
   display: flex;
   flex-direction: row;
@@ -10,7 +12,7 @@
 
   /* BASE */
   
-  border-radius: 6px;
+  border-radius: breakpoints.scale(6px);
   box-shadow: var(--base-shadow);
   font-weight: 600;
   letter-spacing: 0%;
@@ -24,42 +26,42 @@
   /* SIZES */
 
   &.small {
-    gap: 6px;
-    padding: 10px 12px;
-    font-size: 14px;
-    line-height: 20px;
-    height: 40px;
+    gap: breakpoints.scale(6px);
+    padding: breakpoints.scale(10px) breakpoints.scale(12px);
+    font-size: breakpoints.scale(14px);
+    line-height: breakpoints.scale(20px);
+    height: breakpoints.scale(40px);
   }
 
   &.medium {
-    gap: 8px;
-    font-size: 16px;
-    line-height: 24px;
-    padding: 10px 18px;
-    height: 44px;
+    gap: breakpoints.scale(8px);
+    font-size: breakpoints.scale(16px);
+    line-height: breakpoints.scale(24px);
+    padding: breakpoints.scale(10px) breakpoints.scale(18px);
+    height: breakpoints.scale(44px);
   }
 
   &.large {
-    gap: 12px;
-    font-size: 18px;
-    line-height: 28px;
-    padding: 16px 28px;
-    height: 60px;
+    gap: breakpoints.scale(12px);
+    font-size: breakpoints.scale(18px);
+    line-height: breakpoints.scale(28px);
+    padding: breakpoints.scale(16px) breakpoints.scale(28px);
+    height: breakpoints.scale(60px);
   }
 
   &.iconOnly {
     gap: 0;
     
     &.small {
-      padding: 10px;
+      padding: breakpoints.scale(10px);
     }
 
     &.medium {
-      padding: 12px;
+      padding: breakpoints.scale(12px);
     }
 
     &.large {
-      padding: 16px;
+      padding: breakpoints.scale(16px);
     }
   }
 

@@ -1,14 +1,17 @@
+@use '../../../styles/breakpoints' as breakpoints;
+
 .field {
   width: 100%;
   box-sizing: border-box;
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: breakpoints.scale(8px) breakpoints.scale(12px);
+  border-radius: breakpoints.scale(6px);
   border: 1px solid var(--input-border-color);
   box-shadow: var(--base-shadow);
   color: var(--input-text-color);
   background-color: #ffffff;
   font: inherit;
-  line-height: 24px;
+  font-size: breakpoints.scale(16px);
+  line-height: breakpoints.scale(24px);
   outline: none;
 
   &::placeholder {
@@ -32,5 +35,5 @@
 
 .textarea {
   resize: vertical;
-  min-height: 120px;
+  min-height: breakpoints.scale(120px);
 }
