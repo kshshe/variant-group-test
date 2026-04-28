@@ -27,5 +27,7 @@ export function buildCoverLetterPrompt(payload: GenerateRequest): string {
     '- Highlight the candidate strengths naturally.',
     '- End with a short call to action.',
     '- Return plain text only.',
+    '- Do not use markdown in the cover letter.',
+    '- Do not include any links in the cover letter if they are not provided by the user.',
   ].join('\n');
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import { AppHeader } from '../../components/AppHeader/AppHeader';
@@ -63,6 +63,10 @@ export function CreateApplicationPage({
   };
 
   async function handleSubmit() {
+    if (loading) {
+      return;
+    }
+
     const validationResults = [
       jobTitleField.validate(),
       companyField.validate(),
@@ -111,6 +115,14 @@ export function CreateApplicationPage({
   const previewText =
     generatedDocument?.coverLetter ??
     'Your generated cover letter will appear here after a successful request.';
+
+  const isEnoughDataToSubmit = useMemo(() => {
+    return [
+      jobTitleField.value.trim().length > 0,
+      companyField.value.trim().length > 0,
+      strengthsField.value.trim().length > 0,
+    ].every(Boolean);
+  }, [jobTitleField.value, companyField.value, strengthsField.value]);
 
   return (
     <main>
@@ -182,6 +194,7 @@ export function CreateApplicationPage({
             fullWidth
             onClick={handleSubmit}
             color={generatedDocument ? 'secondary' : 'primary'}
+            disabled={!isEnoughDataToSubmit}
           >
             {loading && (
               <Icon
