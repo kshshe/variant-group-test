@@ -4,6 +4,8 @@
 
 [Swagger UI](https://variant.alekseilaud.dev/api/docs/)
 
+[Design System](https://variant.alekseilaud.dev/design/)
+
 Базовый монорепозиторий для тестового задания Variant Group.
 
 ## Что внутри
