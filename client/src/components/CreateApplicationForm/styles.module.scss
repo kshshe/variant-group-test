@@ -1,0 +1,32 @@
+@use '../../styles/breakpoints' as breakpoints;
+
+.title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: calc(50% - #{breakpoints.scale(16px)}) calc(50% - #{breakpoints.scale(16px)});
+    gap: breakpoints.scale(32px);
+
+    @include breakpoints.page-min-down {
+        grid-template-columns: 1fr;
+        gap: breakpoints.scale(24px);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinningIcon {
+    animation: spin 1s linear infinite;
+}

@@ -58,6 +58,7 @@ export function createOpenAICoverLetterService(
             model,
             instructions: COVER_LETTER_SYSTEM_INSTRUCTIONS,
             tools: [
+              // SDK types are not up to date for this tool
               // @ts-expect-error - web_search is not a valid tool type
               { type: 'web_search' },
             ],
