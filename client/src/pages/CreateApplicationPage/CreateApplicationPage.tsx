@@ -9,7 +9,6 @@ import {
   type JobApplicationDocument,
 } from '../../lib/storage/DocumentsStorage';
 
-import styles from './styles.module.scss';
 import { Text } from '../../components/base/text/Text';
 import { TitleGap } from '../../components/TitleGap/TitleGap';
 import { Container } from '../../components/base/container/Container';
@@ -23,6 +22,10 @@ import {
   normalizeGenerateCoverLetterRequest,
 } from '../../lib/validation/generateCoverLetterValidation';
 import { useFormField } from '../../hooks/useFormField';
+
+import LoadingIcon from './loading.svg?react';
+
+import styles from './styles.module.scss';
 
 interface CreateApplicationPageProps {
   documentsCount: number;
@@ -218,14 +221,22 @@ export function CreateApplicationPage({
           </Button>
         </section>
 
-        <ApplicationCard
-          document={{
-            id: 'tmp-id',
-            ...formState,
-            coverLetter: previewText,
-            createdAt: new Date().toISOString(),
-          }}
-        />
+        {!loading && (
+          <ApplicationCard
+            document={{
+              id: 'tmp-id',
+              ...formState,
+              coverLetter: previewText,
+              createdAt: new Date().toISOString(),
+            }}
+          />
+        )}
+
+        {loading && (
+          <div className={styles.loadingPlaceholder}>
+            <LoadingIcon className={styles.loadingIcon} />
+          </div>
+        )}
       </div>
     </main>
   );

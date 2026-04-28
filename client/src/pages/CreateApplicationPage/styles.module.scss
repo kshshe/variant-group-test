@@ -6,6 +6,38 @@
     text-overflow: ellipsis;
 }
 
+@keyframes bounce {
+    0% {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) translateY(-20px);
+        opacity: 0.3;
+    }
+    100% {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+.loadingPlaceholder {
+    background-color: #F2F4F7;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+
+    .loadingIcon {
+        width: 320px;
+        height: 320px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: bounce 4s infinite;
+    }
+}
+
 .container {
     display: grid;
     grid-template-columns: calc(50% - 16px) calc(50% - 16px);
