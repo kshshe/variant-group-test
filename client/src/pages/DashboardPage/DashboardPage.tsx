@@ -2,7 +2,7 @@ import { useLocation } from 'wouter';
 
 import { AppHeader } from '../../components/AppHeader/AppHeader';
 import { ApplicationList } from '../../components/ApplicationList/ApplicationList';
-import { GoalBanner } from '../../components/GoalBanner';
+import { GoalBanner } from '../../components/GoalBanner/GoalBanner';
 import type { JobApplicationDocument } from '../../lib/storage/DocumentsStorage';
 import { Container } from '../../components/base/container/Container';
 import { Text } from '../../components/base/text/Text';

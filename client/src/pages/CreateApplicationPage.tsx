@@ -3,7 +3,6 @@ import { Link } from 'wouter';
 import { toast } from 'react-toastify';
 
 import { AppHeader } from '../components/AppHeader/AppHeader';
-import { GoalBanner } from '../components/GoalBanner';
 import { useLocalStorageState } from '../hooks/useLocalStorageState';
 import { generateCoverLetter } from '../lib/api/generateCoverLetter';
 import type { GenerateCoverLetterRequest } from '../lib/api/types';
@@ -182,8 +181,6 @@ export function CreateApplicationPage({
           </div>
         </section>
       </section>
-
-      <GoalBanner documentsCount={documentsCount} />
     </main>
   );
 }
