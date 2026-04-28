@@ -1,0 +1,55 @@
+.text {
+  margin: 0;
+}
+
+.primary {
+  color: var(--base-text-color);
+}
+
+.secondary {
+  color: var(--secondary-text-color);
+}
+
+.regular {
+  font-family:
+    'Fixel Text',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0;
+}
+
+.large {
+  font-family:
+    'Fixel Display',
+    'Fixel Text',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 44px;
+  letter-spacing: -0.02em;
+}
+
+.xlarge {
+  font-family:
+    'Fixel Display',
+    'Fixel Text',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 60px;
+  letter-spacing: -0.02em;
+}
