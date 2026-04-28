@@ -9,6 +9,8 @@ import {
 import { CreateApplicationPage } from './pages/CreateApplicationPage';
 import { DashboardPage } from './pages/DashboardPage';
 
+import './components/base/global.scss';
+
 export default function App() {
   const [documents, setDocuments] = useState<JobApplicationDocument[]>(() =>
     DocumentsStorage.getAll(),
