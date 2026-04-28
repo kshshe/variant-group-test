@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { Link } from 'wouter';
 import { toast } from 'react-toastify';
 
-import { AppHeader } from '../components/AppHeader';
+import { AppHeader } from '../components/AppHeader/AppHeader';
 import { GoalBanner } from '../components/GoalBanner';
 import { useLocalStorageState } from '../hooks/useLocalStorageState';
 import { generateCoverLetter } from '../lib/api/generateCoverLetter';

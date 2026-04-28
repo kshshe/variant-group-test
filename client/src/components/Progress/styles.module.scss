@@ -1,0 +1,18 @@
+.baseItem {
+    background-color: var(--base-text-color);
+    height: 8px;
+    border-radius: 4px;
+
+    opacity: 0.24;
+    &.completed {
+        opacity: 1;
+    }
+
+    &.dot {
+        width: 8px;
+    }
+
+    &.pill {
+        width: 32px;
+    }
+}

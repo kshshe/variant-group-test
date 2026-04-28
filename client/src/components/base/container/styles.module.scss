@@ -10,18 +10,30 @@
   flex-direction: column;
 }
 
-.start {
+.align-start {
+  align-items: flex-start;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+.justify-start {
   justify-content: flex-start;
 }
 
-.center {
+.justify-center {
   justify-content: center;
 }
 
-.end {
+.justify-end {
   justify-content: flex-end;
 }
 
-.between {
+.justify-between {
   justify-content: space-between;
 }

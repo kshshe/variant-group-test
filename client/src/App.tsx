@@ -8,6 +8,7 @@ import {
 } from './lib/storage/DocumentsStorage';
 import { CreateApplicationPage } from './pages/CreateApplicationPage';
 import { DashboardPage } from './pages/DashboardPage';
+import { Page } from './components/Page/Page';
 
 import './components/base/global.scss';
 
@@ -29,7 +30,7 @@ export default function App() {
   );
 
   return (
-    <>
+    <Page>
       <Switch>
         <Route path="/">
           <DashboardPage documents={documents} onDelete={handleDelete} />
@@ -46,6 +47,6 @@ export default function App() {
         autoClose={4000}
         hideProgressBar={false}
       />
-    </>
+    </Page>
   );
 }

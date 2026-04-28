@@ -1,6 +1,6 @@
 import { Link } from 'wouter';
 
-import { AppHeader } from '../components/AppHeader';
+import { AppHeader } from '../components/AppHeader/AppHeader';
 import { ApplicationList } from '../components/ApplicationList';
 import { GoalBanner } from '../components/GoalBanner';
 import type { JobApplicationDocument } from '../lib/storage/DocumentsStorage';

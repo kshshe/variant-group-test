@@ -15,23 +15,35 @@ const sectionStyle = {
   gap: '16px',
 } as const;
 
+const storyStyle = {
+  padding: '24px',
+  backgroundColor: '#F2F4F7',
+  borderRadius: '12px',
+} as const;
+
 export const Variants: Story = () => (
   <div style={sectionStyle}>
-    <Container align="between" direction="row" style={{ width: '420px' }}>
-      <div style={boxStyle}>Left</div>
-      <div style={boxStyle}>Right</div>
-    </Container>
+    <div style={storyStyle}>
+      <Container justify="between" direction="row" style={{ width: '420px' }}>
+        <div style={boxStyle}>Left</div>
+        <div style={boxStyle}>Right</div>
+      </Container>
+    </div>
 
-    <Container direction="row" gap="12px">
-      <div style={boxStyle}>One</div>
-      <div style={boxStyle}>Two</div>
-      <div style={boxStyle}>Three</div>
-    </Container>
+    <div style={storyStyle}>
+      <Container direction="row" gap="12px">
+        <div style={boxStyle}>One</div>
+        <div style={boxStyle}>Two</div>
+        <div style={boxStyle}>Three</div>
+      </Container>
+    </div>
 
-    <Container direction="column" gap="12px">
-      <div style={boxStyle}>Top</div>
-      <div style={boxStyle}>Middle</div>
-      <div style={boxStyle}>Bottom</div>
-    </Container>
+    <div style={storyStyle}>
+      <Container direction="column" gap="12px">
+        <div style={boxStyle}>Top</div>
+        <div style={boxStyle}>Middle</div>
+        <div style={boxStyle}>Bottom</div>
+      </Container>
+    </div>
   </div>
 );

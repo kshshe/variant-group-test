@@ -1,6 +1,6 @@
 import { Link } from 'wouter';
 
-import { ProgressPills } from './ProgressPills';
+import { Progress } from './Progress/Progress';
 
 interface GoalBannerProps {
   documentsCount: number;
@@ -21,7 +21,7 @@ export function GoalBanner({ documentsCount }: GoalBannerProps) {
       <p>
         <Link href="/create">Create New</Link>
       </p>
-      <ProgressPills current={progressCount} />
+      <Progress style="pills" current={progressCount} total={5} gap={8} />
       <p>{progressCount} out of 5</p>
     </section>
   );
