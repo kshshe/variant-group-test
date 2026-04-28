@@ -1,7 +1,8 @@
 import type { Story } from '@ladle/react';
 
 import '../global.scss';
-import { ICON_NAMES, Icon } from './Icon';
+import { Icon } from './Icon';
+import { ICON_NAMES } from './iconRegistry';
 
 export const AllIcons: Story = () => (
   <div

@@ -2,6 +2,8 @@
 
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fvariant.alekseilaud.dev&label=variant.alekseilaud.dev)](https://variant.alekseilaud.dev)
 
+[Swagger UI](https://variant.alekseilaud.dev/api/docs/)
+
 Базовый монорепозиторий для тестового задания Variant Group.
 
 ## Что внутри

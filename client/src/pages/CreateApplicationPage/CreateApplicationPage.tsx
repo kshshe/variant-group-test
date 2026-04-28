@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { type FormEvent, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import { AppHeader } from '../../components/AppHeader/AppHeader';
@@ -108,6 +108,11 @@ export function CreateApplicationPage({
     }
   }
 
+  function handleFormSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    void handleSubmit();
+  }
+
   const trimmedJobTitle = jobTitleField.value.trim();
   const trimmedCompany = companyField.value.trim();
   const hasCustomTitle = [trimmedJobTitle, trimmedCompany].every(Boolean);
@@ -142,83 +147,85 @@ export function CreateApplicationPage({
             {title}
           </Text>
           <TitleGap size="small" />
-          <Container align="start" direction="row" gap="16px">
-            <Field
-              label="Job title"
-              bottomLabel={
-                jobTitleField.isTouched
-                  ? (jobTitleField.error ?? undefined)
-                  : undefined
-              }
-              error={jobTitleField.isTouched && Boolean(jobTitleField.error)}
-              maxLength={COVER_LETTER_FIELD_MAX_LENGTHS.jobTitle}
-              placeholder="Product manager"
-              {...jobTitleField.inputProps}
-            />
-            <Field
-              label="Company"
-              bottomLabel={
-                companyField.isTouched
-                  ? (companyField.error ?? undefined)
-                  : undefined
-              }
-              error={companyField.isTouched && Boolean(companyField.error)}
-              maxLength={COVER_LETTER_FIELD_MAX_LENGTHS.company}
-              placeholder="Apple"
-              {...companyField.inputProps}
-            />
-          </Container>
-          <Field
-            label="I am good at..."
-            bottomLabel={
-              strengthsField.isTouched
-                ? (strengthsField.error ?? undefined)
-                : undefined
-            }
-            error={strengthsField.isTouched && Boolean(strengthsField.error)}
-            maxLength={COVER_LETTER_FIELD_MAX_LENGTHS.strengths}
-            placeholder="HTML, CSS and doing things in time"
-            {...strengthsField.inputProps}
-          />
-          <Field
-            label="Additional details"
-            bottomLabel={`${additionalDetailsField.value.length}/${COVER_LETTER_FIELD_MAX_LENGTHS.additionalDetails}`}
-            error={
-              additionalDetailsField.isTouched &&
-              Boolean(additionalDetailsField.error)
-            }
-            placeholder="I build user-focused interfaces, communicate clearly with designers and engineers, and enjoy turning ambiguous ideas into polished product experiences."
-            rows={8}
-            type="textarea"
-            {...additionalDetailsField.inputProps}
-          />
-          <Button
-            size="large"
-            fullWidth
-            onClick={handleSubmit}
-            color={generatedDocument ? 'secondary' : 'primary'}
-            disabled={!isEnoughDataToSubmit}
-          >
-            {loading && (
-              <Icon
-                name="loader"
-                size="large"
-                className={styles.spinningIcon}
+          <form onSubmit={handleFormSubmit}>
+            <Container align="start" direction="row" gap="16px">
+              <Field
+                label="Job title"
+                bottomLabel={
+                  jobTitleField.isTouched
+                    ? (jobTitleField.error ?? undefined)
+                    : undefined
+                }
+                error={jobTitleField.isTouched && Boolean(jobTitleField.error)}
+                maxLength={COVER_LETTER_FIELD_MAX_LENGTHS.jobTitle}
+                placeholder="Product manager"
+                {...jobTitleField.inputProps}
               />
-            )}
-            {!loading && (
-              <>
-                {generatedDocument ? (
-                  <>
-                    <Icon name="repeat" />
-                    Try Again
-                  </>
-                ) : (
-                  <>Generate Now</>
-                )}
-              </>
-            )}
-          </Button>
+              <Field
+                label="Company"
+                bottomLabel={
+                  companyField.isTouched
+                    ? (companyField.error ?? undefined)
+                    : undefined
+                }
+                error={companyField.isTouched && Boolean(companyField.error)}
+                maxLength={COVER_LETTER_FIELD_MAX_LENGTHS.company}
+                placeholder="Apple"
+                {...companyField.inputProps}
+              />
+            </Container>
+            <Field
+              label="I am good at..."
+              bottomLabel={
+                strengthsField.isTouched
+                  ? (strengthsField.error ?? undefined)
+                  : undefined
+              }
+              error={strengthsField.isTouched && Boolean(strengthsField.error)}
+              maxLength={COVER_LETTER_FIELD_MAX_LENGTHS.strengths}
+              placeholder="HTML, CSS and doing things in time"
+              {...strengthsField.inputProps}
+            />
+            <Field
+              label="Additional details"
+              bottomLabel={`${additionalDetailsField.value.length}/${COVER_LETTER_FIELD_MAX_LENGTHS.additionalDetails}`}
+              error={
+                additionalDetailsField.isTouched &&
+                Boolean(additionalDetailsField.error)
+              }
+              placeholder="I build user-focused interfaces, communicate clearly with designers and engineers, and enjoy turning ambiguous ideas into polished product experiences."
+              rows={8}
+              type="textarea"
+              {...additionalDetailsField.inputProps}
+            />
+            <Button
+              type="submit"
+              size="large"
+              fullWidth
+              color={generatedDocument ? 'secondary' : 'primary'}
+              disabled={!isEnoughDataToSubmit}
+            >
+              {loading && (
+                <Icon
+                  name="loader"
+                  size="large"
+                  className={styles.spinningIcon}
+                />
+              )}
+              {!loading && (
+                <>
+                  {generatedDocument ? (
+                    <>
+                      <Icon name="repeat" />
+                      Try Again
+                    </>
+                  ) : (
+                    <>Generate Now</>
+                  )}
+                </>
+              )}
+            </Button>
+          </form>
         </section>
 
         {!loading && (
