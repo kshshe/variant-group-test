@@ -131,17 +131,30 @@ export function CreateApplicationPage({
             rows={8}
             type="textarea"
           />
-          <Button size="large" fullWidth onClick={handleSubmit}>
-            {loading ? (
+          <Button
+            size="large"
+            fullWidth
+            onClick={handleSubmit}
+            color={generatedDocument ? 'secondary' : 'primary'}
+          >
+            {loading && (
               <Icon
                 name="loader"
                 size="large"
                 className={styles.spinningIcon}
               />
-            ) : generatedDocument ? (
-              'Try Again'
-            ) : (
-              'Generate letter'
+            )}
+            {!loading && (
+              <>
+                {generatedDocument ? (
+                  <>
+                    <Icon name="repeat" />
+                    Try Again
+                  </>
+                ) : (
+                  <>Generate Now</>
+                )}
+              </>
             )}
           </Button>
         </section>
