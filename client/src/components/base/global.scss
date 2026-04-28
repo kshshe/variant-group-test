@@ -28,6 +28,17 @@
 
   --base-shadow: 0px 1px 2px 0px #1018280D;
   --selected-shadow: 0px 0px 0px 4px #D3F8DF;
+
+  --input-placeholder-color: #667085;
+  --input-border-color: #D0D5DD;
+  --input-focus-border-color: #73E2A3;
+  --input-text-color: #101828;
+  --input-label-color: var(--secondary-contrast-color);
+  --input-bottom-label-color: #475467;
+
+  --error-color: #F04438;
+  --error-border-color: #FDA29B;
+  --error-shadow: 0px 0px 0px 4px #FEE4E2;
 }
 
 body {

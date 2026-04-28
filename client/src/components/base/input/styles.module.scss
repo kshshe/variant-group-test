@@ -1,0 +1,36 @@
+.field {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--input-border-color);
+  box-shadow: var(--base-shadow);
+  color: var(--input-text-color);
+  background-color: #ffffff;
+  font: inherit;
+  line-height: 24px;
+  outline: none;
+
+  &::placeholder {
+    color: var(--input-placeholder-color);
+  }
+
+  &:focus {
+    border-color: var(--input-focus-border-color);
+    box-shadow: var(--base-shadow), var(--selected-shadow);
+  }
+
+  &.error {
+    border-color: var(--error-border-color);
+
+    &:focus {
+      border-color: var(--error-border-color);
+      box-shadow: var(--base-shadow), var(--error-shadow);
+    }
+  }
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}

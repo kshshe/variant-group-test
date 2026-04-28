@@ -1,0 +1,65 @@
+import React from 'react';
+import type { Story } from '@ladle/react';
+
+import '../global.scss';
+import { Field } from './Field';
+
+const inputWrapStyle = {
+  width: '320px',
+  maxWidth: '100%',
+} as const;
+
+const textareaWrapStyle = {
+  width: '420px',
+  maxWidth: '100%',
+} as const;
+
+export const TextField: Story = () => {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <div style={inputWrapStyle}>
+      <Field
+        bottomLabel="Visible to candidates in the public listing"
+        label="Application title"
+        onChange={setValue}
+        placeholder="Enter application title"
+        value={value}
+      />
+    </div>
+  );
+};
+
+export const TextareaField: Story = () => {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <div style={textareaWrapStyle}>
+      <Field
+        label="Description"
+        onChange={setValue}
+        placeholder="Write a short description"
+        rows={5}
+        type="textarea"
+        value={value}
+      />
+    </div>
+  );
+};
+
+export const ErrorField: Story = () => {
+  const [value, setValue] = React.useState('');
+
+  return (
+    <div style={inputWrapStyle}>
+      <Field
+        bottomLabel="Please enter a valid application title"
+        error
+        label="Application title"
+        onChange={setValue}
+        placeholder="Enter application title"
+        value={value}
+      />
+    </div>
+  );
+};

@@ -1,0 +1,22 @@
+.field {
+  margin-bottom: 16px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--input-label-color);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.bottomLabel {
+  margin-top: 6px;
+  color: var(--input-bottom-label-color);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.error {
+  color: var(--error-color);
+}
